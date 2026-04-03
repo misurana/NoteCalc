@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <!-- Top Toolbar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="8dp"
+        android:background="@color/surface"
+        android:elevation="4dp">
+
+        <ImageButton
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:src="@drawable/ic_arrow_back"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:tint="@color/on_surface" />
+
+        <TextView
+            android:id="@+id/editNoteTitle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginHorizontal="8dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="@color/on_surface"
+            android:maxLines="1"
+            android:ellipsize="end"
+            android:hint="Note title" />
+
+        <Button
+            android:id="@+id/btnRename"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:text="Rename"
+            android:textSize="12sp"
+            android:layout_marginEnd="6dp"
+            style="@style/Widget.Material3.Button.OutlinedButton" />
+
+        <Button
+            android:id="@+id/btnSave"
+            android:layout_width="wrap_content"
+            android:layout_height="34dp"
+            android:text="Save"
+            android:textColor="@color/on_primary"
+            app:backgroundTint="@color/primary"
+            style="@style/Widget.Material3.Button" />
+    </LinearLayout>
+
+    <!-- Full-screen Note Content -->
+    <EditText
+        android:id="@+id/editNoteContent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="52dp"
+        android:layout_marginBottom="64dp"
+        android:padding="16dp"
+        android:hint="Start writing..."
+        android:textSize="16sp"
+        android:textColor="@color/on_surface"
+        android:textColorHint="@color/on_surface_variant"
+        android:background="@null"
+        android:gravity="top"
+        android:inputType="textMultiLine|textCapSentences" />
+
+    <!-- Calculator Bottom Sheet -->
+    <LinearLayout
+        android:id="@+id/calculatorBottomSheet"
+        android:layout_width="match_parent"
+        android:layout_height="520dp"
+        android:orientation="vertical"
+        android:background="@drawable/bottom_sheet_background"
+        android:elevation="8dp"
+        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+        app:behavior_peekHeight="64dp"
+        app:behavior_hideable="false">
+
+        <!-- Handle bar -->
+        <LinearLayout
+            android:id="@+id/calculatorHandle"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            android:background="?attr/selectableItemBackground">
+
+            <View
+                android:layout_width="36dp"
+                android:layout_height="4dp"
+                android:background="@color/outline_variant"
+                android:layout_marginEnd="12dp" />
+
+            <TextView
+                android:text="Calculator"
+                android:textSize="13sp"
+                android:textStyle="bold"
+                android:textColor="@color/primary"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <Button
+                android:id="@+id/btnInsertResult"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Insert result"
+                android:textSize="12sp"
+                android:textColor="@color/on_secondary_container"
+                app:backgroundTint="@color/secondary_container"
+                style="@style/Widget.Material3.Button.TonalButton" />
+
+            <ImageButton
+                android:id="@+id/btnToggleCalculator"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:src="@drawable/ic_calculate"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:tint="@color/on_surface_variant"
+                android:layout_marginStart="8dp" />
+        </LinearLayout>
+
+        <!-- Display -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@color/calc_display_bg"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="8dp">
+
+            <TextView
+                android:id="@+id/calcResult"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="12sp"
+                android:textColor="@color/on_surface_variant"
+                android:gravity="end"
+                android:minHeight="16dp" />
+
+            <TextView
+                android:id="@+id/calcDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="0"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="@color/on_surface"
+                android:gravity="end"
+                android:maxLines="1"
+                android:ellipsize="start" />
+        </LinearLayout>
+
+        <!-- Scientific Toggle -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:padding="6dp">
+            <Button
+                android:id="@+id/btnToggleScientific"
+                android:layout_width="wrap_content"
+                android:layout_height="32dp"
+                android:text="Scientific"
+                android:textSize="12sp"
+                style="@style/Widget.Material3.Button.OutlinedButton" />
+        </LinearLayout>
+
+        <!-- Scientific Panel -->
+        <GridLayout
+            android:id="@+id/scientificPanel"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="5"
+            android:padding="4dp"
+            android:visibility="gone">
+            <Button android:id="@+id/btnSin" android:text="sin" style="@style/CalcSciBtn" />
+            <Button android:id="@+id/btnCos" android:text="cos" style="@style/CalcSciBtn" />
+            <Button android:id="@+id/btnTan" android:text="tan" style="@style/CalcSciBtn" />
+            <Button android:id="@+id/btnLog" android:text="log" style="@style/CalcSciBtn" />
+            <Button android:id="@+id/btnLn" android:text="ln" style="@style/CalcSciBtn" />
+            <Button android:id="@+id/btnSqrt" android:text="√" style="@style/CalcSciBtn" />
+            <Button android:id="@+id/btnPow" android:text="^" style="@style/CalcSciBtn" />
+            <Button android:id="@+id/btnOpenParen" android:text="(" style="@style/CalcSciBtn" />
+            <Button android:id="@+id/btnCloseParen" android:text=")" style="@style/CalcSciBtn" />
+            <Button android:id="@+id/btnPi" android:text="π" style="@style/CalcSciBtn" />
+        </GridLayout>
+
+        <!-- Main keypad -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:columnCount="4"
+            android:padding="4dp">
+            <Button android:id="@+id/btnClear" android:text="C" style="@style/CalcFuncBtn" />
+            <Button android:id="@+id/btnBackspace" android:text="⌫" style="@style/CalcFuncBtn" />
+            <Button android:id="@+id/btnDivide" android:text="÷" style="@style/CalcOpBtn" />
+            <Button android:id="@+id/btnMultiply" android:text="×" style="@style/CalcOpBtn" />
+            <Button android:id="@+id/btn7" android:text="7" style="@style/CalcNumBtn" />
+            <Button android:id="@+id/btn8" android:text="8" style="@style/CalcNumBtn" />
+            <Button android:id="@+id/btn9" android:text="9" style="@style/CalcNumBtn" />
+            <Button android:id="@+id/btnMinus" android:text="−" style="@style/CalcOpBtn" />
+            <Button android:id="@+id/btn4" android:text="4" style="@style/CalcNumBtn" />
+            <Button android:id="@+id/btn5" android:text="5" style="@style/CalcNumBtn" />
+            <Button android:id="@+id/btn6" android:text="6" style="@style/CalcNumBtn" />
+            <Button android:id="@+id/btnPlus" android:text="+" style="@style/CalcOpBtn" />
+            <Button android:id="@+id/btn1" android:text="1" style="@style/CalcNumBtn" />
+            <Button android:id="@+id/btn2" android:text="2" style="@style/CalcNumBtn" />
+            <Button android:id="@+id/btn3" android:text="3" style="@style/CalcNumBtn" />
+            <Button android:id="@+id/btnEquals" android:text="=" style="@style/CalcEqualsBtn" app:layout_rowSpan="2" />
+            <Button android:id="@+id/btn0" android:text="0" style="@style/CalcNumBtn" app:layout_columnSpan="2" />
+            <Button android:id="@+id/btnDot" android:text="." style="@style/CalcNumBtn" />
+        </GridLayout>
+
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

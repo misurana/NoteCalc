@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        android:background="@color/surface">
+
+        <!-- Normal toolbar: Title + New FAB only -->
+        <LinearLayout
+            android:id="@+id/toolbarNormal"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="NoteCalc"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/on_surface"
+                android:fontFamily="@font/inter_bold" />
+
+            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+                android:id="@+id/fabNewNote"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="+ New"
+                android:textColor="@color/on_primary"
+                app:backgroundTint="@color/primary"
+                style="@style/Widget.Material3.ExtendedFloatingActionButton.Icon" />
+        </LinearLayout>
+
+        <!-- Select mode toolbar: count + select-all + delete (no cancel button) -->
+        <LinearLayout
+            android:id="@+id/toolbarSelect"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp"
+            android:background="@color/primary_container"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tvSelectedCount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="0 selected"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/on_surface"
+                android:fontFamily="@font/inter_bold" />
+
+            <Button
+                android:id="@+id/btnSelectAll"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Select all"
+                android:layout_marginEnd="8dp"
+                style="@style/Widget.Material3.Button.OutlinedButton" />
+
+            <Button
+                android:id="@+id/btnDeleteSelected"
+                android:layout_width="wrap_content"
+                android:layout_height="36dp"
+                android:text="Delete"
+                android:textColor="@color/error"
+                android:alpha="0.4"
+                android:enabled="false"
+                app:backgroundTint="@color/error_container"
+                style="@style/Widget.Material3.Button.TonalButton" />
+        </LinearLayout>
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="12dp"
+        android:clipToPadding="false"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+
+    <LinearLayout
+        android:id="@+id/emptyState"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        <TextView android:text="📝" android:textSize="64sp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:text="No notes yet" android:textSize="20sp"
+            android:textColor="@color/on_surface_variant" android:layout_marginTop="12dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+        <TextView android:text="Tap + to create your first note" android:textSize="14sp"
+            android:textColor="@color/on_surface_variant" android:layout_marginTop="6dp"
+            android:layout_width="wrap_content" android:layout_height="wrap_content" />
+    </LinearLayout>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
