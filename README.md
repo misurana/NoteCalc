@@ -21,6 +21,15 @@ A notes app with a **sliding bottom-sheet calculator** built in Kotlin for Andro
 ### 2. Add Font Files
 In `app/src/main/res/font/`, add:
 - `inter.ttf`
+
+- ## Tech Stack
+- - **Language**: Kotlin
+  - - **Platform**: Android
+    - - **Database**: Room Persistence Library
+      - - **Architecture**: MVVM
+        - - **UI Components**: Material Design (Bottom Sheet)
+          - - **Build System**: Gradle
+            - 
 - `inter_bold.ttf`
 
 Download from: https://fonts.google.com/specimen/Inter
